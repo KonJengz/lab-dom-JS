@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event lab 10</title>
+
+    <style>
+
+    </style>
+</head>
+<body>
+    <form action="/action_page.php">
+      <div class="province"></div>
+      <div class="district"></div>
+    </form>
+
+    <script>
+      const thailand = [
+        {
+          province: "Bangkok",
+          district: ["Bang Bon", 'Bang Kapi', 'Bang Khae', 'Bang Khen']
+        },
+        {
+          province: "Ratchaburi",
+          district: ["Ban Pong", 'Ban Kha', 'Mueang Ratchaburi']
+        },
+        {
+          province: "Surat Thani",
+          district: ["Ban Na Doem", 'Kanchanadit', 'Phrasaeng']
+        }
+      ]
+
+      const div_province = document.querySelector(".province")
+      const div_district = document.querySelector(".district")
+
+      const label_province = document.createElement('label')
+      label_province.for = 'province'
+      label_province.innerHTML = 'Province'
+      div_province.append(label_province)
+
+      const select_province = document.createElement('select')
+      select_province.id = 'province'
+      select_province.name = 'province'
+      select_province.classList = 'select-province'
+      div_province.append(select_province)
+
+      const option_province = document.createElement('option')
+      option_province.value = 'select'
+      option_province.innerHTML = 'select'
+      option_province.selected = true
+      option_province.classList = 'option_province'
+      select_province.append(option_province)
+
+
+      const label_district = document.createElement('label')
+      label_district.for = 'district'
+      label_district.innerHTML = 'District'
+      div_district.append(label_district)
+
+      const select_district= document.createElement('select')
+      select_district.id = 'district'
+      select_district.name = 'district'
+      div_district.append(select_district)
+
+      const option_district = document.createElement('option')
+      option_district.value = 'select'
+      option_district.innerHTML = 'select'
+      select_district.append(option_district)
+
+      function provinceThailand() {
+        for (let i = 0; i < thailand.length; i++) {
+          const option_province = document.createElement('option')
+          option_province.value = thailand[i]['province']
+          option_province.innerHTML = thailand[i]['province']
+          option_province.classList = 'option_province'
+          select_province.append(option_province)
+        }
+      }
+
+      function selectProvince() {
+        const get_province = document.querySelector('#province')
+        get_province.addEventListener('change', (e) => {
+          for (let i = 0; i < thailand.length; i++) {
+            if (e.target.value === thailand[i]['province']) {
+              for (let y = 0; y < thailand[i]['district'].length; y++) {
+                const option_district = document.createElement('option')
+                option_district.value = thailand[i]['district'][y]
+                option_district.innerHTML = thailand[i]['district'][y]
+                option_district.classList = 'option_district'
+                select_district.append(option_district)
+              }
+            }
+          }
+          get_province.addEventListener('click', () => {
+              const get_district = document.querySelectorAll('.option_district')
+              console.log(get_district.forEach((e) => {
+                e.remove()
+              }))
+            })
+        })
+      }
+
+
+
+      provinceThailand()
+      selectProvince()
+      
+    </script>
+</body>
+</html>

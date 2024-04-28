@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event lab 08</title>
+
+    <style>
+        .active {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <button>Hide</button>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod eligendi illum harum eaque impedit vitae dolorem quae quia saepe, repellat explicabo laboriosam ab natus nihil asperiores pariatur tempore vel itaque!</p>
+
+    <script>
+
+        const btn = document.querySelector("button")
+        const p = document.querySelector('p')
+        
+        btn.addEventListener('click', () => {
+            p.classList.toggle('active')
+            if (btn.innerText === "Show"){
+                btn.innerText = "Hide"
+            } else {
+                btn.innerText = "Show"
+            }
+        })
+
+    </script>
+</body>
+</html>

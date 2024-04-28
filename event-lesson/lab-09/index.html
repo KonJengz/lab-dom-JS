@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event lab 09</title>
+
+    <style>
+        .required {
+            color: red
+        }
+    </style>
+</head>
+<body>
+
+    <input type="text" placeholder="Phone Number" />
+    <p class="required"></p>
+    <button>Check</button>
+
+    <script>
+        const input = document.querySelector("input")
+        const required = document.querySelector(".required")
+        const btn = document.querySelector("button")
+
+        function checkInput() {
+            let numPhone = input.value
+            let styleColor = "1px solid red"
+            if (numPhone === "") {
+                required.innerHTML = "Phone Number is required"
+                input.style.border = styleColor
+            } else if (isNaN(numPhone)) {
+                required.innerHTML = "Phone Number is invalid"
+                input.style.border = styleColor
+            }else if (numPhone.length !== 10) {
+                required.innerHTML = "Invalid length"
+                input.style.border = styleColor
+            }else {
+                alert("Your number is valid")
+            }
+
+            setTimeout(() => {
+                required.innerHTML = ""
+                input.style.border = ""
+            },2000)
+        }
+
+        input.addEventListener('input', checkInput)
+        btn.addEventListener('click', checkInput)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event lab 12</title>
+
+    <style>
+        button, input, p {
+            font-size: 16px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 10px;
+            background-color: #dadada;
+        }
+
+        .con-add {
+            display: flex;
+        }
+
+        input[name=todo-list], .input-edit {
+            padding: 8px 12px;
+            border: 1px solid #dadada;
+            border-radius: 40px;
+            margin-left: 8px;
+            flex-grow: 1;
+        }
+
+        .input-edit {
+            margin: 0;
+        }
+
+        .container {
+            padding: 20px;
+            margin: auto;
+            width: 500px;
+            /* border: 1px solid red; */
+        }
+
+        .con-todo-item {
+            display: flex;
+            margin: 12px;
+            gap: 12px;
+            padding: 8px;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid white;
+        }
+        
+        .con-todo-item:hover {
+            border-bottom: 1px solid #dadada;
+        }
+
+        .container-todo-list {
+            margin-top: 16px;
+        }
+
+        .todo-text {
+            font-size: 18px;
+        }
+
+        .todolist-done {
+            color: cadetblue;
+            text-decoration: line-through;
+        }
+
+        .con-btn {
+            display: flex;
+            gap: 12px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="con-add">
+            <button class="add-todo btn">Add</button>
+            <input type="text" name="todo-list">
+            <small class="notification"></small>
+        </div>
+        <div class="container-todo-list"></div>
+    </div>
+
+    <script>
+        const containerTodoList = document.querySelector('.container-todo-list')
+        const input_todo = document.querySelector('input[name=todo-list]')
+        const btn_add = document.querySelector('.add-todo')
+        const noti = document.querySelector('.notification')
+
+        function addTodoList() {
+            const todo_Item = document.createElement('div')
+            todo_Item.classList.add('con-todo-item')
+
+            const todo_text = document.createElement('p')
+            todo_text.classList.add('todo-text')
+            todo_text.innerHTML = input_todo.value
+            todo_text.addEventListener('click', todoListDone)
+
+            const con_btn = document.createElement('div')
+            con_btn.classList.add('con-btn')
+
+            const btn_edit = document.createElement('button')
+            btn_edit.type = 'button'
+            btn_edit.classList.add('btn-edit', 'btn')
+            btn_edit.innerHTML = 'Edit'
+            btn_edit.addEventListener('click', editTodoList)
+
+            const btn_delete = document.createElement('button')
+            btn_delete.type = 'button'
+            btn_delete.classList.add('btn-delete','btn')
+            btn_delete.innerHTML = 'Delete'
+            btn_delete.addEventListener('click', deleteTodoList)
+
+            con_btn.append(btn_edit, btn_delete)
+            todo_Item.append(todo_text, con_btn)
+            containerTodoList.prepend(todo_Item)
+        }
+
+        const todo_text = document.querySelector('.todo-text')
+
+        function todoListDone(e) {
+            e.target.classList.toggle('todolist-done')
+        }
+
+        function deleteTodoList(e) {
+            e.target.parentElement.parentElement.remove()
+        }
+
+        function clearInput() {
+            input_todo.value = ''
+        }
+
+        function editTodoList(e) {
+            let btn_edit2 = e.target
+            
+            if (btn_edit2.innerHTML !== 'Edit') {
+                saveTodoList(e)
+                btn_edit2.innerHTML = 'Edit'
+            } else {
+                btn_edit2.innerHTML = 'Save'
+                let valueList = e.target.parentElement.parentElement.firstElementChild.innerHTML
+
+                const input_edit = document.createElement('input')
+                input_edit.type = 'text'
+                input_edit.classList.add('input-edit')
+                input_edit.value = valueList
+                input_edit.name = "input_edit"
+
+                e.target.parentElement.parentElement.firstElementChild.after(input_edit)
+                e.target.parentElement.parentElement.firstElementChild.remove()
+            }
+        }
+
+        function saveTodoList(e) {
+            const todo_text = document.createElement('p')
+            todo_text.classList.add('todo-text')
+
+            const input_edit = e.target.parentElement.parentElement.firstElementChild.value
+            todo_text.innerHTML = input_edit
+            e.target.parentElement.parentElement.firstElementChild.after(todo_text)
+            e.target.parentElement.parentElement.firstElementChild.remove()
+            console.log(todo_text.innerHTML)
+        }
+
+        btn_add.addEventListener('click', addTodoList)
+        btn_add.addEventListener('click', clearInput)
+
+
+
+    </script>
+</body>
+</html>

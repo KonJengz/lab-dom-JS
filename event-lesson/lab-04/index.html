@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event lab 04</title>
+</head>
+<body>
+    <a href="#">Google</a>
+
+    <script>
+
+        const taba = document.querySelector('a')
+
+        taba.addEventListener('click', () => {
+            if (confirm('Leave for https://google.com?')) {
+                taba.setAttribute('href', 'https://google.com')
+            } else {
+                taba.setAttribute('href', 'https://google.com')
+            }
+        })
+
+    </script>
+</body>
+</html>

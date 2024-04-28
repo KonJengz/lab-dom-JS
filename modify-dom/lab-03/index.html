@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modify-lab-03</title>
+</head>
+<body>
+    <ol id="elem">
+        <li>Hello</li>
+        <li>World</li>
+    </ol>
+
+
+    <script>
+        const elem = document.querySelectorAll('li')
+
+        function clear(elem) { 
+            for (let i of elem){
+                i.remove()
+            }
+         }
+
+        clear(elem); // clears the list
+    </script>
+        
+    </script>
+</body>
+</html>

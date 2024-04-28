@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-counter</title>
+
+    <style>
+        #root {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #root > button {
+            padding: 8px 16px;
+            margin-bottom: 20px;
+        }
+
+        .div_counter {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .counter {
+            width: 100px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: antiquewhite;
+            font-size: 28px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        h1.counter {
+            background-color: rgb(233, 212, 187);
+            cursor: auto;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="root">
+        <h1>Sum = <span class="sum">0</span></h1>
+        <button>Add Counter</button>
+        <div class="main"></div>
+    </div>
+    <script>
+        const btn = document.querySelector('button')
+        btn.addEventListener('click', addCounter)
+
+        function addCounter() {
+            const div_main = document.querySelector('.main')
+
+            const div_counter = document.createElement('div')
+            div_counter.classList = 'div_counter'
+
+            const btn_add = document.createElement('div')
+            btn_add.innerHTML = '+'
+            btn_add.classList = 'btn_add counter'
+            btn_add.addEventListener('click', addcount)
+            btn_add.addEventListener('click', changeAdd)
+
+            const btn_sub = document.createElement('div')
+            btn_sub.innerHTML = '-'
+            btn_sub.classList = 'counter'
+            btn_sub.addEventListener('click', subcount)
+            btn_sub.addEventListener('click', changeAdd)
+
+            let h1_count = document.createElement('h1')
+            h1_count.innerHTML = 0
+            h1_count.classList = 'counter h1_counter'
+
+            const div_reset = document.createElement('div')
+            div_reset.innerHTML = 'C'
+            div_reset.classList = 'counter'
+            div_reset.addEventListener('click', resetSum)
+
+            const div_delete = document.createElement('div')
+            div_delete.innerHTML = 'X'
+            div_delete.classList = 'counter'
+            div_delete.addEventListener('click', deleteCounter)
+
+            div_main.append(div_counter)
+            div_counter.append(btn_add, h1_count, btn_sub, div_reset, div_delete)
+        }
+
+        function addcount() {
+            let num = this.nextElementSibling.innerHTML
+
+            num = +num + 1
+            this.nextElementSibling.innerHTML = num
+            
+        }
+
+        function subcount() {
+            let num = this.previousElementSibling.innerHTML
+
+            if (+num > 0) {
+                num = +num - 1
+                this.previousElementSibling.innerHTML = num
+
+            }
+        }
+        const sum = document.querySelector('.sum')
+        function changeAdd() {
+            
+            const h1List = document.querySelectorAll('.h1_counter')
+            let sum_num = 0
+
+            h1List.forEach((e) => {
+                sum_num = +e.innerHTML + sum_num
+                sum.innerHTML = sum_num
+            })
+        }
+
+        function resetSum() {
+            sum.innerHTML = sum.innerHTML - this.previousElementSibling.previousElementSibling.innerHTML
+            this.previousElementSibling.previousElementSibling.innerHTML = 0
+        }
+
+        function deleteCounter() {
+            sum.innerHTML = sum.innerHTML - this.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML
+            this.parentElement.remove()
+        }
+
+
+    </script>
+</body>
+</html>

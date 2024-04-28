@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab-04</title>
+</head>
+<body>
+    <div>
+        <h2 class="title-1">List of companies</h2>
+        <ul>
+          <li id="1">Google</li>
+          <li class="active" id="2">Yahoo</li>
+          <li id="3">Tencent</li>
+        </ul>
+      </div>
+
+      <script>
+
+        const li2_1 = document.querySelector(".active")
+        const li2_2 = document.querySelectorAll("li")[1]
+        const li2_3 = document.getElementsByClassName("active")[0]
+        const li2_4 = document.getElementById("2")
+        const li2_5 = document.getElementsByTagName("li")[1]
+
+        li2_5.style.color = "red"
+
+        console.log(li2_1)
+        console.log(li2_2)
+        console.log(li2_3)
+        console.log(li2_4)
+        console.log(li2_5)
+
+        //access <li> ตัวที่สอง
+        // querySelector
+        // querySelectorAll
+        // getElementsByClassName
+        // getElementById
+        // getElementsByTagName
+
+      </script>
+      
+</body>
+</html>

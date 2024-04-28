@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event lab 11</title>
+
+    <style>
+
+    </style>
+</head>
+<body>
+    <button class="incree">+</button>
+    <span>0</span>
+    <button class="decree">-</button>
+    <button class="reset">Reset</button>
+
+    <script>
+        const incree = document.querySelector('.incree')
+        const decree = document.querySelector('.decree')
+        const reset = document.querySelector('.reset')
+        const span = document.querySelector('span')
+
+        reset.addEventListener('click', () => {
+            span.textContent = 0
+        })
+
+        incree.addEventListener('click', () => {
+            let count = +span.innerHTML
+
+            if (count >= 0) {
+                let newCount = count + 1
+                span.textContent = newCount
+            }
+            
+        })
+
+        decree.addEventListener('click', () => {
+            let count = +span.innerHTML
+
+            if (count > 0) {
+                let newCount = count - 1
+                span.textContent = newCount
+            }
+            
+        })
+        
+
+    </script>
+</body>
+</html>

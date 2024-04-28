@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event lab 05</title>
+</head>
+<body>
+    <form action="">
+        <label for="nickname">nickname</label>
+        <input type="text" name="nickname" value=" " />
+        <label for="job">job</label>
+        <input type="text" name="job" />
+
+    </form>
+
+    <script>
+
+        const inputNickname = document.querySelector("input[name=nickname]")
+        const inputJob = document.querySelector("input[name=job]")
+
+        inputNickname.addEventListener('click', () => {
+            console.log(inputNickname.getAttribute('name'))
+        })
+
+        inputJob.addEventListener('click', () => {
+            console.log(inputJob.getAttribute('name'))
+        })
+
+        inputNickname.addEventListener('keydown', (e) => {
+            console.log(e.target.value)
+        })
+
+        inputJob.addEventListener('keydown', (e) => {
+            console.log(e.target.value)
+        })
+
+    </script>
+</body>
+</html>

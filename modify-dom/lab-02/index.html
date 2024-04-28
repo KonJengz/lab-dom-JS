@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modify-lab-02</title>
+</head>
+<body>
+    <ul>
+        
+    </ul>
+
+    <script>
+        const ul = document.querySelector("ul")
+        let input = prompt('ใส่ข้อความ')
+
+        while (!(input.trim == "" || input === null)) {
+            const create = document.createElement("li")
+            create.append(input)
+            ul.append(create)
+            input = prompt('ใส่ข้อความ')
+        }
+        
+    </script>
+</body>
+</html>

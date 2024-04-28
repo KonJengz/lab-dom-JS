@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event lab 07</title>
+</head>
+<body>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum alias vero debitis? Numquam iste similique nisi veniam! Hic reprehenderit necessitatibus eveniet repellendus, quis adipisci sit! Nostrum at maiores veniam molestias.</p>
+    <button>Click to hide me</button>
+
+    <script>
+
+        const btn = document.querySelector("button")
+        const p = document.querySelector('p')
+        
+        btn.addEventListener('click', () => {
+            p.hidden = true
+        })
+
+    </script>
+</body>
+</html>
